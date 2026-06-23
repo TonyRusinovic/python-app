@@ -14,8 +14,10 @@ spec:
       labels:
         app: python-app
     spec:
+      imagePullSecrets:
+        - name: dockerhub-secret
       containers:
       - name: python-app
-        image: ricardoandre9707/python-app:v2
+        image: afrusinovic/flask:v1
         ports:
         - containerPort: 5000

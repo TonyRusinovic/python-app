@@ -7,7 +7,6 @@ app = Flask(__name__)
 
 
 @app.route('/api/v1/info')
-
 def info():
     return jsonify({
     	'time': datetime.datetime.now().strftime("%I:%M:%S%p  on %B %d, %Y"),
@@ -17,7 +16,6 @@ def info():
     })
 
 @app.route('/api/v1/healthz')
-
 def health():
 	# Do an actual check here
     return jsonify({'status': 'up'}), 200
