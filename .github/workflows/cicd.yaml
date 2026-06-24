@@ -44,6 +44,16 @@ jobs:
       - uses: actions/checkout@v3
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
+          fetch-depth: 0
+          clean: true
+
+      - name: Ensure branch is up to date
+        shell: bash
+        run: |
+          branch="${GITHUB_REF#refs/heads/}"
+          git fetch origin "$branch"
+          git checkout "$branch"
+          git pull --rebase origin "$branch"
 
       - name: Modify values file
         shell: bash
@@ -58,6 +68,8 @@ jobs:
           message: 'Updates values.yaml with commit ${{needs.ci.outputs.commit_id}}'
           add: 'charts/python-flask/values.yaml'
           signoff: false
+          push: true
+          branch: ${{ github.ref_name }}
 
       - name: Install argocd
         shell: bash
