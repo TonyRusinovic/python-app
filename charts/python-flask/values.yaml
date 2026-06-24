@@ -2,7 +2,7 @@ replicaCount: 1
 image:
   repository: afrusinovic/flask
   pullPolicy: IfNotPresent
-  tag: "0264d6"
+  tag: "3736ad"
 imagePullSecrets:
   - name: dockerhub-secret
 nameOverride: ""
