@@ -1,5 +1,8 @@
 name: cicd
 
+permissions:
+  contents: write
+
 on:
   push:
     paths:
@@ -38,6 +41,8 @@ jobs:
     steps:
 
       - uses: actions/checkout@v3
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Modify values file
         shell: bash
@@ -50,6 +55,8 @@ jobs:
         uses: EndBug/add-and-commit@v9
         with:
           message: 'Updates values.yaml with commit ${{needs.ci.outputs.commit_id}}'
+          add: 'charts/python-flask/values.yaml'
+          signoff: false
 
       - name: Install argocd
         shell: bash
