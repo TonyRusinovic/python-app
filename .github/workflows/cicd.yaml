@@ -84,7 +84,7 @@ jobs:
       - name: Argocd app sync
         shell: bash
         run: |
-          argocd login argocd-server.argocd \
+          argocd login host.docker.internal:8080 \
             --insecure  \
             --grpc-web \
             --username admin \
