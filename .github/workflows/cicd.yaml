@@ -38,7 +38,7 @@ jobs:
 
   cd:
     needs: ci
-    runs-on: self-hosted
+    runs-on: arc-runners
     steps:
 
       - uses: actions/checkout@v3

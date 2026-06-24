@@ -1,0 +1,15 @@
+version: '3.8'
+services:
+  runner:
+    build: .
+    environment:
+      GITHUB_URL: "https://github.com/TonyRusinovic/python-app"
+      RUNNER_TOKEN: "ADXCPYET7DCXKGI6AUMXFBTKHOPIU"
+      RUNNER_NAME: "my-docker-runner"
+      RUNNER_LABELS: "self-hosted,docker,linux"
+    restart: unless-stopped
+    volumes:
+      - runner-work:/home/runner/_work
+
+volumes:
+  runner-work:
