@@ -63,8 +63,11 @@ jobs:
         shell: bash
         run: |
           curl -sSL -o argocd-linux-amd64 https://github.com/argoproj/argo-cd/releases/latest/download/argocd-linux-amd64
-          sudo install -m 555 argocd-linux-amd64 /usr/local/bin/argocd
-          rm argocd-linux-amd64
+          chmod +x argocd-linux-amd64
+          mkdir -p "$HOME/.local/bin"
+          mv argocd-linux-amd64 "$HOME/.local/bin/argocd"
+          export PATH="$HOME/.local/bin:$PATH"
+          echo "$HOME/.local/bin" >> "$GITHUB_PATH"
 
       - name: Argocd app sync
         shell: bash
